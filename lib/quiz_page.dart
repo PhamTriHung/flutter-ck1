@@ -2,6 +2,7 @@ import 'package:ck/ScreenArgument.dart';
 import 'package:ck/notifiers/quiz_notifier.dart';
 import 'package:ck/quiz_page/quiz_answer_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 import 'dart:math';
 
@@ -15,10 +16,19 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  FlutterTts flutterTts = FlutterTts();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+  }
+
+  Future<void> speak(String text, String language) async {
+    await flutterTts.setLanguage(language);
+    await flutterTts.setPitch(1.0);
+    await flutterTts.setSpeechRate(0.8);
+    await flutterTts.speak(text);
   }
 
   @override
@@ -91,7 +101,13 @@ class _QuizPageState extends State<QuizPage> {
                                 margin: EdgeInsets.only(bottom: 16),
                                 child: Row(
                                   children: [
-                                    IconButton(onPressed: () {}, icon: Icon(Icons.speaker)),
+                                    IconButton(onPressed: () {
+                                      if(notifier.learningMode) {
+                                        speak(notifier.word.firstLanguage, 'en-US');
+                                      } else {
+                                        speak(notifier.word.secondLanguage, 'vi-VN');
+                                      }
+                                    }, icon: Icon(Icons.speaker)),
                                     Spacer(),
                                     Text("en/vi"),
                                     Switch(

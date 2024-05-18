@@ -91,11 +91,10 @@ class QuizNotifier extends ChangeNotifier {
   init(topicId) async {
     CollectionReference collection = _db
         .collection('Topics')
-        .doc('pqeFaJo1oxqTAQzloFVk')
+        .doc(topicId)
         .collection('Words');
 
     QuerySnapshot snapshot = await collection.get();
-    int i = 0;
     if(!isInitFinish) {
       snapshot.docs.forEach((doc) {
         lstSelectedWord.add(

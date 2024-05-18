@@ -3,6 +3,7 @@ import 'package:ck/notifiers/typing_test_notifier.dart';
 import 'package:ck/result_bottom_modal.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 
 class TypingPage extends StatefulWidget {
@@ -13,11 +14,19 @@ class TypingPage extends StatefulWidget {
 }
 
 class _TypingPageState extends State<TypingPage> {
+  FlutterTts flutterTts = FlutterTts();
   TextEditingController answerController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> speak(String text, String language) async {
+    await flutterTts.setLanguage(language);
+    await flutterTts.setPitch(1.0);
+    await flutterTts.setSpeechRate(0.8);
+    await flutterTts.speak(text);
   }
 
   @override
@@ -94,7 +103,13 @@ class _TypingPageState extends State<TypingPage> {
                         margin: EdgeInsets.only(bottom: 16),
                         child: Row(
                           children: [
-                            IconButton(onPressed: () {}, icon: Icon(Icons.speaker)),
+                            IconButton(onPressed: () {
+                              if(notifier.learningMode) {
+                                speak(notifier.word.secondLanguage, 'vi-VN');
+                              } else {
+                                speak(notifier.word.firstLanguage, 'en-US');
+                              }
+                            }, icon: Icon(Icons.speaker)),
                             Spacer(),
                             Text("en/vi"),
                             Switch(

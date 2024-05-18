@@ -23,7 +23,6 @@ class _TopicsTabScreenState extends State<TopicsTabScreen> {
                 itemCount: courselist!.length,
                 itemBuilder: (context, index) {
                   final course = courselist[index];
-                  print(course['words']);
                   return Card(
                     child: ListTile(
                       title: Text(course['courseName']),
@@ -41,6 +40,10 @@ class _TopicsTabScreenState extends State<TopicsTabScreen> {
                             PopupMenuItem<int>(
                               child: Text("Typing test"),
                               value: 2,
+                            ),
+                            PopupMenuItem<int>(
+                              child: Text("View words"),
+                              value: 3,
                             )
                           ];
                         },
@@ -54,6 +57,9 @@ class _TopicsTabScreenState extends State<TopicsTabScreen> {
                               break;
                             case 2:
                               Navigator.pushNamed(context, '/typing_test', arguments: ScreenArgument(course['courseId']));
+                              break;
+                            case 3:
+                              Navigator.pushNamed(context, '/list_word', arguments: ScreenArgument(course['courseId']));
                               break;
                           }
                         },

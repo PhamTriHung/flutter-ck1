@@ -1,9 +1,11 @@
 import 'package:ck/Login.dart';
 import 'package:ck/flashcards_page.dart';
 import 'package:ck/folder/app_home_screen.dart';
+import 'package:ck/list_word_page.dart';
 import 'package:ck/notifiers/quiz_notifier.dart';
 import 'package:ck/notifiers/topic_notifier.dart';
 import 'package:ck/notifiers/typing_test_notifier.dart';
+import 'package:ck/notifiers/word_notifier.dart';
 import 'package:ck/quiz_page.dart';
 import 'package:ck/register.dart';
 import 'package:ck/typing_test_page.dart';
@@ -18,7 +20,8 @@ void main() {
       ChangeNotifierProvider(create: (_) => FlashcardNotifier()),
       ChangeNotifierProvider(create: (_) => QuizNotifier()),
       ChangeNotifierProvider(create: (_) => TypingTestNotifier()),
-      ChangeNotifierProvider(create: (_) => TopicNotifier())
+      ChangeNotifierProvider(create: (_) => TopicNotifier()),
+      ChangeNotifierProvider(create: (_) => WordNotifier())
     ],
     child: const MyApp(),
   ));
@@ -43,6 +46,7 @@ class MyApp extends StatelessWidget {
                 '/flashcard': (context) => const FlashcardPages(),
                 '/typing_test': (context) => const TypingPage(),
                 '/home': (context) => const HomeScreen(),
+                '/list_word': (context) => const ListWordPage(),
               },
               title: 'Flutter Demo',
               theme: ThemeData(

@@ -7,7 +7,6 @@ class TopicRepository extends GetxService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<String> createTopic(TopicsModel topic) async {
-    print(_db);
     DocumentReference docRef =
         await _db.collection('Topics').add(topic.toJson());
     return docRef.id; // Return the ID of the newly created topic
