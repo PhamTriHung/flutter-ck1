@@ -1,5 +1,7 @@
+import 'package:ck/ScreenArgument.dart';
 import 'package:ck/notifiers/typing_test_notifier.dart';
 import 'package:ck/result_bottom_modal.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +16,15 @@ class _TypingPageState extends State<TypingPage> {
   TextEditingController answerController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<TypingTestNotifier>(builder: (_, notifier, __) {
+      final args = ModalRoute.of(context)!.settings.arguments as ScreenArgument;
+      notifier.init(args.topicId);
       return Scaffold(
         appBar: AppBar(),
         body: Padding(

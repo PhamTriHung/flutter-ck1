@@ -1,6 +1,6 @@
 import 'package:ck/model/answer.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../model/word.dart';
 
 class TypingTestNotifier extends ChangeNotifier {
@@ -15,20 +15,22 @@ class TypingTestNotifier extends ChangeNotifier {
   bool resetScaleAnimate = false;
   bool isCorrect = false;
   bool learningMode = false;
+  bool isInitFinish = false;
+  FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  List<Word> lstSelectedWord = [ Word(topic: "topic 1", firstLanguage: "dog", secondLanguage: "cho"),
-    Word(topic: "topic 1", firstLanguage: "cat", secondLanguage: "meo"),
-    Word(topic: "topic 1", firstLanguage: "chicken", secondLanguage: "ga"),
-    Word(topic: "topic 1", firstLanguage: "dug", secondLanguage: "vit"),
+  List<Word> lstSelectedWord = [
+    Word(firstLanguage: "dog", secondLanguage: "cho"),
+    Word(firstLanguage: "cat", secondLanguage: "meo"),
+    Word(firstLanguage: "chicken", secondLanguage: "ga"),
+    Word(firstLanguage: "dug", secondLanguage: "vit"),
   ];
 
   int currQuestionIdx = 0;
   String message = '';
 
-
   getNextQuestion() {
     currQuestionIdx += 1;
-    if(currQuestionIdx < lstSelectedWord.length) {
+    if (currQuestionIdx < lstSelectedWord.length) {
       word = lstSelectedWord[currQuestionIdx];
     }
 
@@ -36,13 +38,17 @@ class TypingTestNotifier extends ChangeNotifier {
   }
 
   answerQuestion({required String answer}) {
-    String correctAnswer = learningMode ? word.firstLanguage.toLowerCase() : word.secondLanguage.toLowerCase();
+    String correctAnswer = learningMode
+        ? word.firstLanguage.toLowerCase()
+        : word.secondLanguage.toLowerCase();
 
     if (correctAnswer == answer.toLowerCase()) {
-      lstCorrectAnswer.add(Answer(correctAnswer: correctAnswer, userAnswer: answer));
+      lstCorrectAnswer
+          .add(Answer(correctAnswer: correctAnswer, userAnswer: answer));
       isCorrect = true;
     } else {
-      lstWrongAnswer.add(new Answer(correctAnswer: correctAnswer, userAnswer: answer));
+      lstWrongAnswer
+          .add(new Answer(correctAnswer: correctAnswer, userAnswer: answer));
       isCorrect = false;
     }
     notifyListeners();
@@ -74,4 +80,22 @@ class TypingTestNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  init(topicId) async {
+    CollectionReference collection = _db
+        .collection('Topics')
+        .doc('pqeFaJo1oxqTAQzloFVk')
+        .collection('Words');
+
+    QuerySnapshot snapshot = await collection.get();
+    int i = 0;
+    if(!isInitFinish) {
+      snapshot.docs.forEach((doc) {
+        lstSelectedWord.add(
+            Word(firstLanguage: doc['english'], secondLanguage: doc['vietnamese'])
+        );
+      });
+    }
+    isInitFinish = true;
+    notifyListeners();
+  }
 }

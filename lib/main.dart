@@ -1,6 +1,8 @@
 import 'package:ck/Login.dart';
 import 'package:ck/flashcards_page.dart';
+import 'package:ck/folder/app_home_screen.dart';
 import 'package:ck/notifiers/quiz_notifier.dart';
+import 'package:ck/notifiers/topic_notifier.dart';
 import 'package:ck/notifiers/typing_test_notifier.dart';
 import 'package:ck/quiz_page.dart';
 import 'package:ck/register.dart';
@@ -15,7 +17,8 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (_) => FlashcardNotifier()),
       ChangeNotifierProvider(create: (_) => QuizNotifier()),
-      ChangeNotifierProvider(create: (_) => TypingTestNotifier())
+      ChangeNotifierProvider(create: (_) => TypingTestNotifier()),
+      ChangeNotifierProvider(create: (_) => TopicNotifier())
     ],
     child: const MyApp(),
   ));
@@ -32,13 +35,14 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
-              initialRoute: '/quiz',
+              initialRoute: '/home',
               routes: {
                 '/login': (context) => const LoginPage(),
                 '/register': (context) => const RegisterPage(),
                 '/quiz': (context) => const QuizPage(),
                 '/flashcard': (context) => const FlashcardPages(),
-                '/typing_test': (context) => const TypingPage()
+                '/typing_test': (context) => const TypingPage(),
+                '/home': (context) => const HomeScreen(),
               },
               title: 'Flutter Demo',
               theme: ThemeData(
@@ -96,5 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: LoginPage());
+  }
+}
+
+class HexColor extends Color {
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF' + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
   }
 }

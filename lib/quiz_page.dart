@@ -1,3 +1,4 @@
+import 'package:ck/ScreenArgument.dart';
 import 'package:ck/notifiers/quiz_notifier.dart';
 import 'package:ck/quiz_page/quiz_answer_card.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,10 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<QuizNotifier>(builder: (_, notifier, __) {
+      final args = ModalRoute.of(context)!.settings.arguments as ScreenArgument;
+      notifier.init(args.topicId);
       return Scaffold(
         appBar: AppBar(),
         body: Padding(
