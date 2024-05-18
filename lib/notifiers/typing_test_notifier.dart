@@ -67,11 +67,4 @@ class TypingTestNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  shuffleQuestion() {
-    currQuestionIdx = 0;
-    lstSelectedWord.shuffle();
-    word = lstSelectedWord[currQuestionIdx];
-    notifyListeners();
-  }
-
 }

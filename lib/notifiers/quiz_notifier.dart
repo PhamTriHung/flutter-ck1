@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:ck/model/answer.dart';
 import 'package:flutter/material.dart';
 
 import '../model/word.dart';
@@ -20,8 +19,8 @@ class QuizNotifier extends ChangeNotifier {
   bool learningMode = false;
   late Word word = lstSelectedWord[0];
   late List<String> lstAnswer;
-  List<Answer> lstCorrectAnswer = [];
-  List<Answer> lstWrongAnswer = [];
+  List<Word> lstCorrectAnswer = [];
+  List<Word> lstWrongAnswer = [];
 
   randomAnswer() {
     Random random = Random();
@@ -41,12 +40,11 @@ class QuizNotifier extends ChangeNotifier {
   }
 
   handleAnswer(answer) {
-    var correctAnswer = learningMode ? word.secondLanguage : word.firstLanguage;
-    if(correctAnswer == answer) {
-      lstCorrectAnswer.add(Answer(correctAnswer: correctAnswer, userAnswer: answer));
+    if(learningMode ? word.secondLanguage == answer : word.firstLanguage == answer) {
+      lstCorrectAnswer.add(word);
       isCorrect = true;
     } else {
-      lstWrongAnswer.add(Answer(correctAnswer: correctAnswer, userAnswer: answer));
+      lstWrongAnswer.add(word);
       isCorrect = false;
     }
   }
@@ -65,14 +63,6 @@ class QuizNotifier extends ChangeNotifier {
     word = lstSelectedWord[currQuestionIdx];
     lstCorrectAnswer = [];
     lstWrongAnswer = [];
-    randomAnswer();
-    notifyListeners();
-  }
-
-  shuffleQuestion() {
-    currQuestionIdx = 0;
-    lstSelectedWord.shuffle();
-    word = lstSelectedWord[currQuestionIdx];
     randomAnswer();
     notifyListeners();
   }

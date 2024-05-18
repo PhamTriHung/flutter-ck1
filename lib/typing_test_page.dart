@@ -1,3 +1,4 @@
+import 'package:ck/animations/scale_animation.dart';
 import 'package:ck/notifiers/typing_test_notifier.dart';
 import 'package:ck/result_bottom_modal.dart';
 import 'package:flutter/material.dart';
@@ -57,16 +58,11 @@ class _TypingPageState extends State<TypingPage> {
                             return Card(
                               child: ListTile(
                                 title: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Text("Correct answer: " +
-                                        notifier.lstWrongAnswer[index]
-                                            .correctAnswer),
-                                    Spacer(),
-                                    Text("Your answer: " +
-                                        notifier
-                                            .lstWrongAnswer[index].userAnswer)
+                                    Text("Correct answer: " + notifier
+                                        .lstWrongAnswer[index].correctAnswer),
+                                    Text("Your answer: " + notifier
+                                        .lstWrongAnswer[index].userAnswer)
                                   ],
                                 ),
                               ),
@@ -81,26 +77,11 @@ class _TypingPageState extends State<TypingPage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 16),
-                        child: Row(
-                          children: [
-                            IconButton(onPressed: () {}, icon: Icon(Icons.speaker)),
-                            Spacer(),
-                            Text("en/vi"),
-                            Switch(
-                                onChanged: (value) {
-                                  notifier.switchLearningMode();
-                                },
-                                value: notifier.learningMode),
-                            IconButton(
-                                onPressed: () {
-                                  notifier.shuffleQuestion();
-                                },
-                                icon: Icon(Icons.shuffle))
-                          ],
-                        ),
-                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            notifier.switchLearningMode();
+                          },
+                          child: Text("Switch")),
                       Text("Question " +
                           (notifier.currQuestionIdx + 1).toString() +
                           "/" +
