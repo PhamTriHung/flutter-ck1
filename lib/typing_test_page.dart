@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import 'package:ck/animations/scale_animation.dart';
-=======
 import 'package:ck/ScreenArgument.dart';
->>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2
 import 'package:ck/notifiers/typing_test_notifier.dart';
 import 'package:ck/result_bottom_modal.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

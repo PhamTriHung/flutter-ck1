@@ -73,9 +73,6 @@ class TypingTestNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-<<<<<<< HEAD
-}
-=======
   shuffleQuestion() {
     currQuestionIdx = 0;
     lstSelectedWord.shuffle();
@@ -86,11 +83,10 @@ class TypingTestNotifier extends ChangeNotifier {
   init(topicId) async {
     CollectionReference collection = _db
         .collection('Topics')
-        .doc('pqeFaJo1oxqTAQzloFVk')
+        .doc(topicId)
         .collection('Words');
 
     QuerySnapshot snapshot = await collection.get();
-    int i = 0;
     if(!isInitFinish) {
       snapshot.docs.forEach((doc) {
         lstSelectedWord.add(
@@ -102,4 +98,3 @@ class TypingTestNotifier extends ChangeNotifier {
     notifyListeners();
   }
 }
->>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2
