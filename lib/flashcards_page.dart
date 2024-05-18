@@ -8,6 +8,8 @@ import 'package:ck/notifiers/flashcards_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'ScreenArgument.dart';
+
 class FlashcardPages extends StatefulWidget {
   const FlashcardPages({super.key});
 
@@ -36,6 +38,8 @@ class _FlashcardPagesState extends State<FlashcardPages> {
     final size = MediaQuery.of(context).size;
 
     return Consumer<FlashcardNotifier>(builder: (_, notifier, __) {
+      final args = ModalRoute.of(context)!.settings.arguments as ScreenArgument;
+      notifier.init(args.topicId);
       return Scaffold(
         appBar: AppBar(),
         body: Padding(
