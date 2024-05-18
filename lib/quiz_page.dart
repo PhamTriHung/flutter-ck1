@@ -45,10 +45,12 @@ class _QuizPageState extends State<QuizPage> {
             if ((notifier.currQuestionIdx) >= notifier.lstSelectedWord.length) {
               return Column(
                 children: [
-                  Text("Correct " +
-                      notifier.lstCorrectAnswer.length.toString() +
-                      " in " +
-                      notifier.lstSelectedWord.length.toString()),
+                  Expanded(
+                      flex: 1,
+                      child: Text("Correct " +
+                          notifier.lstCorrectAnswer.length.toString() +
+                          " in " +
+                          notifier.lstSelectedWord.length.toString())),
                   Text("Correct words"),
                   Expanded(
                       flex: 4,
@@ -58,7 +60,7 @@ class _QuizPageState extends State<QuizPage> {
                             return Card(
                               child: ListTile(
                                 title: Text(notifier
-                                    .lstCorrectAnswer[index].correctAnswer),
+                                    .lstCorrectAnswer[index].firstLanguage),
                               ),
                             );
                           })),
@@ -70,17 +72,8 @@ class _QuizPageState extends State<QuizPage> {
                           itemBuilder: (BuildContext context, int index) {
                             return Card(
                               child: ListTile(
-                                title: Row(
-                                  children: [
-                                    Text("Correct answer: " +
-                                        notifier.lstWrongAnswer[index]
-                                            .correctAnswer),
-                                    Spacer(),
-                                    Text("Your answer: " +
-                                        notifier
-                                            .lstWrongAnswer[index].userAnswer)
-                                  ],
-                                ),
+                                title: Text(notifier
+                                    .lstWrongAnswer[index].firstLanguage),
                               ),
                             );
                           }))
@@ -88,6 +81,7 @@ class _QuizPageState extends State<QuizPage> {
               );
             } else {
               return Column(
+                // crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
@@ -141,9 +135,7 @@ class _QuizPageState extends State<QuizPage> {
                               fontSize: 20, fontWeight: FontWeight.w800),
                         ),
                         Text(
-                          notifier.learningMode
-                              ? notifier.word.firstLanguage
-                              : notifier.word.secondLanguage,
+                          notifier.learningMode ? notifier.word.firstLanguage : notifier.word.secondLanguage,
                           style: TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 56),
                         ),
@@ -151,13 +143,13 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 4,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         child: GridView.count(
                           shrinkWrap: true,
-                          childAspectRatio: (.8 / 1),
+                          childAspectRatio: (.75 / 1),
                           crossAxisCount: 2,
                           children: notifier.lstAnswer.map((answer) {
                             return QuizAnswerCard(answer: answer);

@@ -20,9 +20,9 @@ class _ResultBottomModalState extends State<ResultBottomModal> {
           color: widget.isCorrect ? Colors.green : Colors.redAccent
         ),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
                 child: Text(widget.isCorrect ? 'Correct' : 'Incorrect',
@@ -33,14 +33,7 @@ class _ResultBottomModalState extends State<ResultBottomModal> {
                 ),),
               ),
               Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    textStyle: TextStyle(
-                      color: Colors.black
-                    )
-                  ),
-                    onPressed: () {
+                child: ElevatedButton(onPressed: () {
                   widget.onNextQuestionClick.call();
                 }, child: Text("Next Question")),
               )

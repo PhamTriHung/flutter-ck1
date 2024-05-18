@@ -1,7 +1,10 @@
 import 'dart:math';
 
+<<<<<<< HEAD
+=======
 import 'package:ck/model/answer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+>>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2
 import 'package:flutter/material.dart';
 
 import '../model/word.dart';
@@ -23,9 +26,14 @@ class QuizNotifier extends ChangeNotifier {
   bool learningMode = false;
   late Word word = lstSelectedWord[0];
   late List<String> lstAnswer;
+<<<<<<< HEAD
+  List<Word> lstCorrectAnswer = [];
+  List<Word> lstWrongAnswer = [];
+=======
   List<Answer> lstCorrectAnswer = [];
   List<Answer> lstWrongAnswer = [];
   FirebaseFirestore _db = FirebaseFirestore.instance;
+>>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2
 
   randomAnswer() {
     Random random = Random();
@@ -49,6 +57,13 @@ class QuizNotifier extends ChangeNotifier {
   }
 
   handleAnswer(answer) {
+<<<<<<< HEAD
+    if(learningMode ? word.secondLanguage == answer : word.firstLanguage == answer) {
+      lstCorrectAnswer.add(word);
+      isCorrect = true;
+    } else {
+      lstWrongAnswer.add(word);
+=======
     var correctAnswer = learningMode ? word.secondLanguage : word.firstLanguage;
     if (correctAnswer == answer) {
       lstCorrectAnswer
@@ -57,6 +72,7 @@ class QuizNotifier extends ChangeNotifier {
     } else {
       lstWrongAnswer
           .add(Answer(correctAnswer: correctAnswer, userAnswer: answer));
+>>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2
       isCorrect = false;
     }
   }
@@ -80,6 +96,9 @@ class QuizNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+<<<<<<< HEAD
+}
+=======
   shuffleQuestion() {
     currQuestionIdx = 0;
     lstSelectedWord.shuffle();
@@ -106,3 +125,4 @@ class QuizNotifier extends ChangeNotifier {
     notifyListeners();
   }
 }
+>>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2

@@ -73,6 +73,9 @@ class TypingTestNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+<<<<<<< HEAD
+}
+=======
   shuffleQuestion() {
     currQuestionIdx = 0;
     lstSelectedWord.shuffle();
@@ -99,3 +102,4 @@ class TypingTestNotifier extends ChangeNotifier {
     notifyListeners();
   }
 }
+>>>>>>> be2ef0a78c65651c3497a55516d551ab17d9e3b2
