@@ -19,20 +19,20 @@ class TermDefinitionCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Thuật ngữ'),
+            Text('English'),
             TextField(
               controller: termController,
               decoration: InputDecoration(
-                hintText: 'Nhập thuật ngữ',
+                hintText: 'Enter vocabulary',
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 10),
-            Text('Định nghĩa'),
+            Text('Vietnamese'),
             TextField(
               controller: definitionController,
               decoration: InputDecoration(
-                hintText: 'Nhập định nghĩa',
+                hintText: 'Enter vocabulary',
                 border: OutlineInputBorder(),
               ),
             ),

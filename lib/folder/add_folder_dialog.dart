@@ -13,23 +13,23 @@ class FolderDialog {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Tạo thư mục'),
+          title: const Text('Add folder'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                const Text('Tên thư mục:'),
+                const Text('Folder name:'),
                 TextFormField(
                   controller: folderNameController,
                   decoration: const InputDecoration(
-                    hintText: 'Nhập tên thư mục',
+                    hintText: 'Enter folder name',
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text('Mô tả:'),
+                const Text('Description:'),
                 TextFormField(
                   controller: descriptionController,
                   decoration: const InputDecoration(
-                    hintText: 'Nhập mô tả cho thư mục',
+                    hintText: 'Enter a description for the folder',
                   ),
                 ),
               ],
@@ -37,7 +37,7 @@ class FolderDialog {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Hủy'),
+              child: const Text('Cancel'),
               onPressed: () => Navigator.of(context).pop(),
             ),
             TextButton(
@@ -51,7 +51,14 @@ class FolderDialog {
                   creatorId: '',
                   public: true,
                 ));
-                topicRepository.addWordToTopic('SSgPFatmxtNRxjQetTiI', WordModel(description: 'description', english: '', illustration: '', pronunciation: 's', vietnamese: ''));
+                topicRepository.addWordToTopic(
+                    'SSgPFatmxtNRxjQetTiI',
+                    WordModel(
+                        description: 'description',
+                        english: '',
+                        illustration: '',
+                        pronunciation: 's',
+                        vietnamese: ''));
                 // Thêm hành động lưu thư mục tại đây
                 // Navigator.of(context).pop();
               },

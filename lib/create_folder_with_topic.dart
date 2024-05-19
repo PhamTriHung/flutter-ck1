@@ -35,7 +35,7 @@ class _CreateFolderWithTopicState extends State<CreateFolderWithTopic> {
               appBar: AppBar(
                 backgroundColor: Colors.blue,
                 title: const Text(
-                  'Tạo thư mục',
+                  'Add folder',
                   style: TextStyle(color: Colors.white),
                 ),
                 leading: IconButton(
@@ -68,8 +68,8 @@ class _CreateFolderWithTopicState extends State<CreateFolderWithTopic> {
                 ],
               ),
               body: Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
+                  padding: const EdgeInsets.only(
+                      top: 16, right: 16, left: 16, bottom: 100),
                   child: SingleChildScrollView(
                     child: Center(
                       child: Column(
@@ -78,20 +78,24 @@ class _CreateFolderWithTopicState extends State<CreateFolderWithTopic> {
                             TextField(
                               controller: _folderNameController,
                               decoration: const InputDecoration(
-                                hintText: 'Tên folder',
+                                hintText: 'Folder name',
                               ),
                             ),
                             const SizedBox(height: 20),
                             const Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('Danh sách topic'),
+                                  Text('List topic'),
                                 ]),
-                            ...List.generate(_topicNameControllers.length, (index) {
-                              return TextFormField(controller: _topicNameControllers[index], decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: 'tên topic'
-                              ),);
+                            ...List.generate(_topicNameControllers.length,
+                                (index) {
+                              return TextFormField(
+                                controller: _topicNameControllers[index],
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: 'Topic name'),
+                              );
                             })
                           ]),
                     ),

@@ -50,8 +50,9 @@ class _AddWordPageState extends State<AddWordPage> {
   Widget build(BuildContext context) {
     return Consumer<WordNotifier>(
       builder: (_, notifier, __) {
-        final args = ModalRoute.of(context)!.settings.arguments as ScreenArgument;
-        return  MaterialApp(
+        final args =
+            ModalRoute.of(context)!.settings.arguments as ScreenArgument;
+        return MaterialApp(
           home: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blue,
@@ -81,13 +82,15 @@ class _AddWordPageState extends State<AddWordPage> {
                 IconButton(
                   icon: Icon(Icons.save), // Biểu tượng chia sẻ
                   onPressed: () {
-                    notifier.addWordsToTopic(args.topicId, _allowMembersToAdd, _termControllers, _definitionControllers);
+                    notifier.addWordsToTopic(args.topicId, _allowMembersToAdd,
+                        _termControllers, _definitionControllers);
                   },
                 ),
               ],
             ),
             body: Padding(
-              padding: EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
+              padding:
+                  EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
               child: SingleChildScrollView(
                 child: Center(
                   child: Column(
@@ -97,10 +100,10 @@ class _AddWordPageState extends State<AddWordPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Danh sách học phần'),
+                          Text('Vocabulary List'),
                           Row(
                             children: [
-                              Text('Chế độ riêng tư'),
+                              Text('Private mode'),
                               Switch(
                                 value: _allowMembersToAdd,
                                 onChanged: (newValue) {

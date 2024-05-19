@@ -9,7 +9,8 @@ class CreateTopicInFolderPage extends StatefulWidget {
   const CreateTopicInFolderPage({super.key});
 
   @override
-  State<CreateTopicInFolderPage> createState() => _CreateTopicInFolderPageState();
+  State<CreateTopicInFolderPage> createState() =>
+      _CreateTopicInFolderPageState();
 }
 
 class _CreateTopicInFolderPageState extends State<CreateTopicInFolderPage> {
@@ -47,7 +48,7 @@ class _CreateTopicInFolderPageState extends State<CreateTopicInFolderPage> {
     final args = ModalRoute.of(context)!.settings.arguments as ScreenArgument;
     return Consumer<TopicNotifier>(
       builder: (_, notifier, __) {
-        return  MaterialApp(
+        return MaterialApp(
           home: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blue,
@@ -77,13 +78,19 @@ class _CreateTopicInFolderPageState extends State<CreateTopicInFolderPage> {
                 IconButton(
                   icon: Icon(Icons.save), // Biểu tượng chia sẻ
                   onPressed: () {
-                    notifier.addTopicToFolder(_topicNameController.text, args.topicId, _allowMembersToAdd, _termControllers, _definitionControllers);
+                    notifier.addTopicToFolder(
+                        _topicNameController.text,
+                        args.topicId,
+                        _allowMembersToAdd,
+                        _termControllers,
+                        _definitionControllers);
                   },
                 ),
               ],
             ),
             body: Padding(
-              padding: EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
+              padding:
+                  EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
               child: SingleChildScrollView(
                 child: Center(
                   child: Column(
@@ -92,17 +99,17 @@ class _CreateTopicInFolderPageState extends State<CreateTopicInFolderPage> {
                       TextField(
                         controller: _topicNameController,
                         decoration: InputDecoration(
-                          hintText: 'Tên topic',
+                          hintText: 'Topic name',
                         ),
                       ),
                       SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Danh sách học phần'),
+                          Text('Vocabulary List'),
                           Row(
                             children: [
-                              Text('Chế độ riêng tư'),
+                              Text('Private mode'),
                               Switch(
                                 value: _allowMembersToAdd,
                                 onChanged: (newValue) {

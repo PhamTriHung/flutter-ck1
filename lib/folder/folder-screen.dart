@@ -41,7 +41,7 @@ class _FolderScreenState extends State<FolderScreen>
         automaticallyImplyLeading: false,
         backgroundColor: AppTheme.background,
         title: const Text(
-          'Thư viện',
+          'Elearn App',
           style: TextStyle(color: Colors.black),
         ),
         actions: [
@@ -61,9 +61,9 @@ class _FolderScreenState extends State<FolderScreen>
             labelColor: Colors.black,
             unselectedLabelColor: Colors.black.withOpacity(0.7),
             tabs: const [
-              Tab(text: 'Học phần'),
-              Tab(text: 'Thư mục'),
-              Tab(text: 'Thông tin'),
+              Tab(text: 'Topics'),
+              Tab(text: 'Folder'),
+              Tab(text: 'Profile'),
             ]),
       ),
       body: TabBarView(

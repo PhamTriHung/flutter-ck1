@@ -96,17 +96,17 @@ class _CreateTopicWithWordsState extends State<CreateTopicWithWords> {
                       TextField(
                         controller: _topicNameController,
                         decoration: InputDecoration(
-                          hintText: 'Tên topic',
+                          hintText: 'Topic name',
                         ),
                       ),
                       SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Danh sách học phần'),
+                          Text('Vocabulary List'),
                           Row(
                             children: [
-                              Text('Chế độ riêng tư'),
+                              Text('Private mode'),
                               Switch(
                                 value: _allowMembersToAdd,
                                 onChanged: (newValue) {
