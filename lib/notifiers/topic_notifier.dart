@@ -111,8 +111,8 @@ class TopicNotifier extends ChangeNotifier {
         });
       });
     }
-    isInitFinish = true;
     notifyListeners();
+    isInitFinish = true;
   }
 
   Future<void> addTopicToFolder(

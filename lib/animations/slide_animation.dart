@@ -87,7 +87,6 @@ class _SlideAnimationState extends State<SlideAnimation>
         break;
     }
 
-    print(widget.direction);
     _animation = tween.animate(
         CurvedAnimation(parent: _animationController, curve: Curves.easeInOut));
 

@@ -82,12 +82,16 @@ class FlashcardNotifier extends ChangeNotifier {
     if(currWordIdx < lstSelectedWord.length) {
       currWordIdx += 1;
       word1 = lstSelectedWord[currWordIdx];
+      print("hihi " + word1.firstLanguage);
     } else {
       print("end of list");
     }
 
+    notifyListeners();
+
     Future.delayed(Duration(milliseconds: 1000), () {
       word2 = word1;
+      notifyListeners();
     });
   }
 
@@ -98,9 +102,11 @@ class FlashcardNotifier extends ChangeNotifier {
     } else {
       print("end of list");
     }
+    notifyListeners();
 
     Future.delayed(Duration(milliseconds: 1000), () {
       word2 = word1;
+      notifyListeners();
     });
   }
 
@@ -159,12 +165,12 @@ class FlashcardNotifier extends ChangeNotifier {
         lstSelectedWord.add(
             Word(firstLanguage: doc['english'], secondLanguage: doc['vietnamese'])
         );
+        word1 = lstSelectedWord[0];
+        word2 = lstSelectedWord[0];
+        notifyListeners();
       });
     }
     isInitFinish = true;
     intTotalListLength = lstSelectedWord.length;
-    word1 = lstSelectedWord[0];
-    word2 = lstSelectedWord[0];
-    notifyListeners();
   }
 }
