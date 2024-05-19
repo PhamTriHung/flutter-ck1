@@ -17,64 +17,67 @@ class FolderTabScreen extends StatelessWidget {
             if (snapshot.hasData) {
               final folderList = snapshot.data;
               return Scaffold(
-                body: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Spacer(),
-                        Text("Add new folder"),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, '/create_folder_with_topic');
-                            },
-                            icon: Icon(Icons.add)),
-                      ],
-                    ),
-                    Expanded(
-                        child: ListView.builder(
-                      itemBuilder: (context, index) {
-                        final folder = folderList[index];
-                        return Card(
-                          child: ListTile(
-                            title: Text(folder['name']),
-                            trailing: PopupMenuButton<int>(
-                              itemBuilder: (context) {
-                                return <PopupMenuEntry<int>>[
-                                  PopupMenuItem(
-                                      child: Text("View topic"), value: 0),
-                                  PopupMenuItem(
-                                      child: Text("Delete folder"), value: 1),
-                                  PopupMenuItem(
-                                      child: Text("Add topic"), value: 2)
-                                ];
+                body: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Spacer(),
+                          Text("Add new folder"),
+                          IconButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, '/create_folder_with_topic');
                               },
-                              onSelected: (value) {
-                                switch (value) {
-                                  case 0:
-                                    Navigator.pushNamed(
-                                        context, '/list_topics_in_folder',
-                                        arguments:
-                                            ScreenArgument(folder['folderId']));
-                                    break;
-                                  case 1:
-                                    notifier.deleteFolder(folder['folderId']);
-                                    break;
-                                  case 2:
-                                    Navigator.pushNamed(
-                                        context, '/add_topic_to_folder',
-                                        arguments:
-                                            ScreenArgument(folder['folderId']));
-                                    break;
-                                }
-                              },
+                              icon: Icon(Icons.add)),
+                        ],
+                      ),
+                      Expanded(
+                          child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          final folder = folderList[index];
+                          return Card(
+                            child: ListTile(
+                              title: Text(folder['name']),
+                              trailing: PopupMenuButton<int>(
+                                itemBuilder: (context) {
+                                  return <PopupMenuEntry<int>>[
+                                    PopupMenuItem(
+                                        child: Text("View topic"), value: 0),
+                                    PopupMenuItem(
+                                        child: Text("Delete folder"), value: 1),
+                                    PopupMenuItem(
+                                        child: Text("Add topic"), value: 2)
+                                  ];
+                                },
+                                onSelected: (value) {
+                                  switch (value) {
+                                    case 0:
+                                      Navigator.pushNamed(
+                                          context, '/list_topics_in_folder',
+                                          arguments:
+                                              ScreenArgument(folder['folderId']));
+                                      break;
+                                    case 1:
+                                      notifier.deleteFolder(folder['folderId']);
+                                      break;
+                                    case 2:
+                                      Navigator.pushNamed(
+                                          context, '/add_topic_to_folder',
+                                          arguments:
+                                              ScreenArgument(folder['folderId']));
+                                      break;
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      itemCount: folderList!.length,
-                    ))
-                  ],
+                          );
+                        },
+                        itemCount: folderList!.length,
+                      ))
+                    ],
+                  ),
                 ),
               );
             } else {
