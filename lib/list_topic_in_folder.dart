@@ -101,6 +101,7 @@ class _ListTopicInFolderState extends State<ListTopicInFolder> {
                               break;
                             case 5:
                               notifier.deleteTopic(notifier.lstTopic[index]['topicId']);
+                              notifier.lstTopic = [];
                               notifier.isInitFinish = false;
                               notifier.init(args.topicId);
                               break;
