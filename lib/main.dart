@@ -1,4 +1,8 @@
 import 'package:ck/Login.dart';
+import 'package:ck/add_word.dart';
+import 'package:ck/create_folder_with_topic.dart';
+import 'package:ck/create_topic_with_workds.dart';
+import 'package:ck/notifiers/folder_notifier.dart';
 import 'package:ck/register.dart';
 import 'package:ck/forgot.dart';
 import 'package:ck/firebase_options.dart';
@@ -24,7 +28,8 @@ void main() {
       ChangeNotifierProvider(create: (_) => QuizNotifier()),
       ChangeNotifierProvider(create: (_) => TypingTestNotifier()),
       ChangeNotifierProvider(create: (_) => TopicNotifier()),
-      ChangeNotifierProvider(create: (_) => WordNotifier())
+      ChangeNotifierProvider(create: (_) => WordNotifier()),
+      ChangeNotifierProvider(create: (_) => FolderNotifier()),
     ],
     child: const MyApp(),
   ));
@@ -50,6 +55,9 @@ class MyApp extends StatelessWidget {
                 '/typing_test': (context) => const TypingPage(),
                 '/home': (context) => const HomeScreen(),
                 '/list_word': (context) => const ListWordPage(),
+                '/add_word': (context) => const AddWordPage(),
+                '/add_topic': (context) => const CreateTopicWithWords(),
+                '/create_folder_with_topic': (context) => const CreateFolderWithTopic(),
               },
               title: 'Flutter Demo',
               theme: ThemeData(

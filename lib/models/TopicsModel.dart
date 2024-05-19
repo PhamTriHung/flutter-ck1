@@ -7,6 +7,7 @@ class TopicsModel {
   String lastAccessed;
   String creatorId;
   bool public;
+  String? folderId;
 
   TopicsModel({
     this.topicId,
@@ -16,6 +17,7 @@ class TopicsModel {
     required this.lastAccessed,
     required this.creatorId,
     required this.public,
+    this.folderId,
   });
 
   Map<String, dynamic> toJson() {
@@ -26,6 +28,7 @@ class TopicsModel {
       'lastAccessed': lastAccessed,
       'creatorId': creatorId,
       'public': public,
+      'folderId': folderId,
     };
   }
 
@@ -38,6 +41,7 @@ class TopicsModel {
       lastAccessed: snapshot['lastAccessed'] ?? '',
       creatorId: snapshot['creatorId'] ?? '',
       public: snapshot['public'] ?? false,
+      folderId: snapshot['folderId'] ?? ''
     );
   }
 }

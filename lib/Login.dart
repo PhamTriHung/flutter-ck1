@@ -1,6 +1,6 @@
+import 'package:ck/folder/app_home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ck/english_app/english_app_home_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,8 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   bool a = false;
   Future<void> _loginWithEmailPassword() async {
     try {
-      print(_emailController.text);
-      print(_passwordController.text);
       setState(() {
         a = true;
       });
@@ -34,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       // Chuyển hướng đến màn hình chính
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => EnglishAppHomeScreen()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
         (route) => false,
       );
 

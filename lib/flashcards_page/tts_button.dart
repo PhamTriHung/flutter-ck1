@@ -4,7 +4,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 
 class TTSButton extends StatefulWidget {
-  const TTSButton({super.key});
+  const TTSButton({super.key, required this.language});
+  final String language;
 
   @override
   State<TTSButton> createState() => _TTSButtonState();
@@ -14,10 +15,10 @@ class _TTSButtonState extends State<TTSButton> {
   bool _isTapped = false;
   FlutterTts flutterTts = FlutterTts();
 
+
   @override
   void initState() {
     // TODO: implement initState
-    _setupTts();
     super.initState();
   }
 
@@ -33,7 +34,7 @@ class _TTSButtonState extends State<TTSButton> {
     return Consumer<FlashcardNotifier>(builder: (_, notifier, __) {
       return IconButton(
           onPressed: () {
-            _runTts(text: notifier.word1.secondLanguage);
+            _runTts(text: widget.language == 'vi-VN' ? notifier.word1.secondLanguage : notifier.word1.firstLanguage);
             _isTapped = true;
             setState(() {});
             Future.delayed(Duration(milliseconds: 500), () {
@@ -49,12 +50,10 @@ class _TTSButtonState extends State<TTSButton> {
     });
   }
 
-  _setupTts() async {
-    await flutterTts.setLanguage('en-US');
-    await flutterTts.setSpeechRate(0.4);
-  }
 
-  _runTts({required String text}) async {
+  _runTts({required String text }) async {
+    await flutterTts.setLanguage(widget.language);
+    await flutterTts.setSpeechRate(0.4);
     await flutterTts.speak(text);
   }
 }

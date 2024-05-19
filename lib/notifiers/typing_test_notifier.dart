@@ -19,10 +19,6 @@ class TypingTestNotifier extends ChangeNotifier {
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
   List<Word> lstSelectedWord = [
-    Word(firstLanguage: "dog", secondLanguage: "cho"),
-    Word(firstLanguage: "cat", secondLanguage: "meo"),
-    Word(firstLanguage: "chicken", secondLanguage: "ga"),
-    Word(firstLanguage: "dug", secondLanguage: "vit"),
   ];
 
   int currQuestionIdx = 0;
@@ -39,8 +35,8 @@ class TypingTestNotifier extends ChangeNotifier {
 
   answerQuestion({required String answer}) {
     String correctAnswer = learningMode
-        ? word.firstLanguage.toLowerCase()
-        : word.secondLanguage.toLowerCase();
+        ? word.secondLanguage.toLowerCase()
+        : word.firstLanguage.toLowerCase();
 
     if (correctAnswer == answer.toLowerCase()) {
       lstCorrectAnswer

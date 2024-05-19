@@ -99,7 +99,7 @@ class _FlashcardPagesState extends State<FlashcardPages> {
                         children: [
                           Expanded(
                               child: ElevatedButton(
-                            child: Text("test"),
+                            child: Text("Auto"),
                             onPressed: () {
                               notifier.runAuto(isAuto: !notifier.isAuto);
                             },

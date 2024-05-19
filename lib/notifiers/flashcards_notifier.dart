@@ -23,10 +23,6 @@ class FlashcardNotifier extends ChangeNotifier {
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
   List<Word> lstSelectedWord = [
-    Word(firstLanguage: "dog", secondLanguage: "cho"),
-    Word(firstLanguage: "cat", secondLanguage: "meo"),
-    Word(firstLanguage: "chicken", secondLanguage: "ga"),
-    Word(firstLanguage: "dug", secondLanguage: "vit"),
   ];
   int intTotalListLength = 0;
   int currWordIdx = 0;
@@ -86,7 +82,7 @@ class FlashcardNotifier extends ChangeNotifier {
   }
 
   getNextWord() {
-    if(currWordIdx < intTotalListLength) {
+    if(currWordIdx < lstSelectedWord.length) {
       currWordIdx += 1;
       word1 = lstSelectedWord[currWordIdx];
     } else {

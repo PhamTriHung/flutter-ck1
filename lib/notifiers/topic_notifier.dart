@@ -10,6 +10,7 @@ import '../models/WordModel.dart';
 class TopicNotifier extends ChangeNotifier {
   final topicRepository = TopicRepository();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _db = FirebaseFirestore.instance;
 
   Future<void> saveTopicWithWords(
       String topicName,
@@ -71,8 +72,6 @@ class TopicNotifier extends ChangeNotifier {
       List<Map<String, dynamic>> coursesList = [];
       for (var doc in snapshot.docs) {
         var wordsQuerySnapshot = await doc.reference.collection('Words').get();
-        print(doc.reference.id);
-        print(wordsQuerySnapshot);
         var wordCount = await doc.reference
             .collection('Words')
             .get()
@@ -88,5 +87,10 @@ class TopicNotifier extends ChangeNotifier {
       }
       return coursesList;
     });
+  }
+
+  deleteTopic(topicId) {
+    DocumentReference doc = _db.collection('Topics').doc(topicId);
+    doc.delete();
   }
 }
