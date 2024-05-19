@@ -43,12 +43,12 @@ class _QuizPageState extends State<QuizPage> {
       final args = ModalRoute.of(context)!.settings.arguments as ScreenArgument;
       notifier.init(args.topicId);
       print(notifier.isInitFinish);
-      if (notifier.isInitFinish) {
-        return Scaffold(
-          appBar: AppBar(),
-          body: Padding(
-            padding: const EdgeInsets.all(16),
-            child: () {
+      return Scaffold(
+        appBar: AppBar(),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: () {
+            if (notifier.isInitFinish) {
               if ((notifier.currQuestionIdx) >=
                   notifier.lstSelectedWord.length) {
                 return Column(
@@ -171,14 +171,14 @@ class _QuizPageState extends State<QuizPage> {
                   ],
                 );
               }
-            }(),
-          ),
-        );
-      } else {
-        return Center(
-          child: Text('Loading...'),
-        );
-      }
+            } else {
+              return Center(
+                child: Text('Loading...'),
+              );
+            }
+          }(),
+        ),
+      );
     });
   }
 }
