@@ -9,10 +9,6 @@ import '../model/word.dart';
 class QuizNotifier extends ChangeNotifier {
   bool isCorrect = false;
   bool isInitFinish = false;
-  QuizNotifier() {
-    randomAnswer();
-    lstSelectedWord.shuffle();
-  }
   List<Word> lstSelectedWord = [
   ];
   int currQuestionIdx = 0;
@@ -97,6 +93,8 @@ class QuizNotifier extends ChangeNotifier {
             Word(firstLanguage: doc['english'], secondLanguage: doc['vietnamese'])
         );
       });
+      randomAnswer();
+      lstSelectedWord.shuffle();
     }
     isInitFinish = true;
     notifyListeners();

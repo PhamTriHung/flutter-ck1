@@ -19,6 +19,15 @@ class _TypingPageState extends State<TypingPage> {
 
   @override
   void initState() {
+    late final TypingTestNotifier quizNotifier;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      quizNotifier = Provider.of<TypingTestNotifier>(context, listen: false);
+      quizNotifier.isInitFinish = false;
+      quizNotifier.currQuestionIdx = 0;
+      quizNotifier.lstSelectedWord = [];
+      quizNotifier.lstWrongAnswer = [];
+      quizNotifier.lstCorrectAnswer = [];
+    });
     super.initState();
   }
 

@@ -5,8 +5,6 @@ import '../model/word.dart';
 
 class TypingTestNotifier extends ChangeNotifier {
   TypingTestNotifier() {
-    lstSelectedWord.shuffle();
-    word = lstSelectedWord[0];
   }
   late Word word;
   List<Answer> lstCorrectAnswer = [];
@@ -35,8 +33,8 @@ class TypingTestNotifier extends ChangeNotifier {
 
   answerQuestion({required String answer}) {
     String correctAnswer = learningMode
-        ? word.secondLanguage.toLowerCase()
-        : word.firstLanguage.toLowerCase();
+        ? word.firstLanguage.toLowerCase()
+        : word.secondLanguage.toLowerCase();
 
     if (correctAnswer == answer.toLowerCase()) {
       lstCorrectAnswer
@@ -89,6 +87,8 @@ class TypingTestNotifier extends ChangeNotifier {
             Word(firstLanguage: doc['english'], secondLanguage: doc['vietnamese'])
         );
       });
+      lstSelectedWord.shuffle();
+      word = lstSelectedWord[0];
     }
     isInitFinish = true;
     notifyListeners();

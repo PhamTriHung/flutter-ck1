@@ -28,9 +28,6 @@ class FlashcardNotifier extends ChangeNotifier {
   int currWordIdx = 0;
 
   FlashcardNotifier() {
-    intTotalListLength = lstSelectedWord.length;
-    word1 = lstSelectedWord[0];
-    word2 = lstSelectedWord[0];
   }
 
 
@@ -165,6 +162,9 @@ class FlashcardNotifier extends ChangeNotifier {
       });
     }
     isInitFinish = true;
+    intTotalListLength = lstSelectedWord.length;
+    word1 = lstSelectedWord[0];
+    word2 = lstSelectedWord[0];
     notifyListeners();
   }
 }

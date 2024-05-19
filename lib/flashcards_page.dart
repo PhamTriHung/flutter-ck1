@@ -26,6 +26,9 @@ class _FlashcardPagesState extends State<FlashcardPages> {
       flashcardsNotifier =
           Provider.of<FlashcardNotifier>(context, listen: false);
       flashcardsNotifier.runSlideCard1(direction: SlideDirection.rightIn);
+      flashcardsNotifier.currWordIdx = 0;
+      flashcardsNotifier.lstSelectedWord = [];
+      flashcardsNotifier.isInitFinish = false;
       if (flashcardsNotifier.isAuto) {
         flashcardsNotifier.auto();
       }

@@ -1,7 +1,9 @@
+import 'package:ck/CreateTopicInFolder.dart';
 import 'package:ck/Login.dart';
 import 'package:ck/add_word.dart';
 import 'package:ck/create_folder_with_topic.dart';
 import 'package:ck/create_topic_with_workds.dart';
+import 'package:ck/list_topic_in_folder.dart';
 import 'package:ck/notifiers/folder_notifier.dart';
 import 'package:ck/register.dart';
 import 'package:ck/forgot.dart';
@@ -57,7 +59,12 @@ class MyApp extends StatelessWidget {
                 '/list_word': (context) => const ListWordPage(),
                 '/add_word': (context) => const AddWordPage(),
                 '/add_topic': (context) => const CreateTopicWithWords(),
-                '/create_folder_with_topic': (context) => const CreateFolderWithTopic(),
+                '/create_folder_with_topic': (context) =>
+                    const CreateFolderWithTopic(),
+                '/list_topics_in_folder': (context) =>
+                    const ListTopicInFolder(),
+                '/add_topic_to_folder': (context) => CreateTopicInFolderPage()
+
               },
               title: 'Flutter Demo',
               theme: ThemeData(
