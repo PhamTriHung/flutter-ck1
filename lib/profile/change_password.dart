@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ck/firebase/Current_user.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   @override
@@ -7,10 +8,9 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _currentPassword = '';
-  String _newPassword = '';
-  String _confirmNewPassword = '';
-
+  TextEditingController currentPassword = TextEditingController();
+  TextEditingController newPassword = TextEditingController();
+  TextEditingController confirmNewPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +26,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             children: [
               TextFormField(
                 obscureText: true,
+                controller: currentPassword,
                 decoration: InputDecoration(
                   labelText: 'Current Password',
                 ),
@@ -35,42 +36,36 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   }
                   return null;
                 },
-                onSaved: (value) {
-                  _currentPassword = value ?? '';
-                },
               ),
               SizedBox(height: 16.0),
               TextFormField(
                 obscureText: true,
+                controller: newPassword,
                 decoration: InputDecoration(
                   labelText: 'New Password',
                 ),
                 validator: (value) {
-                  if (value?.isEmpty ?? true) {
+                  if (value == null || value.isEmpty || value.length < 6) {
                     return 'Please enter a new password';
                   }
-                  _newPassword =
-                      value!; // Gán giá trị của value vào _newPassword
                   return null;
                 },
               ),
               SizedBox(height: 16.0),
               TextFormField(
                 obscureText: true,
+                controller: confirmNewPassword,
                 decoration: InputDecoration(
                   labelText: 'Confirm New Password',
                 ),
                 validator: (value) {
-                  if (value?.isEmpty ?? true) {
+                  if (value == null || value.isEmpty || value.length < 6) {
                     return 'Please confirm your new password';
                   }
-                  if (value != _newPassword) {
+                  if (value != newPassword.text) {
                     return 'Passwords do not match';
                   }
                   return null;
-                },
-                onSaved: (value) {
-                  _confirmNewPassword = value ?? '';
                 },
               ),
               SizedBox(height: 16.0),
@@ -78,11 +73,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        _formKey.currentState?.save();
-                        // Handle password change logic
-                        Navigator.of(context).pop();
+                    onPressed: () async {
+                      if (await verifyCurrentPassword(currentPassword.text)) {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          _formKey.currentState?.save();
+                          changePassword(newPassword.text);
+                          Navigator.of(context).pop();
+                        }
+                      } else {
+                        // Hiển thị thông báo lỗi
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Mật khẩu hiện tại không đúng'),
+                            duration: Duration(seconds: 3),
+                          ),
+                        );
                       }
                     },
                     child: Text('Change Password'),

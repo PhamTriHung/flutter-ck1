@@ -45,7 +45,7 @@ class _CreateTopicWithWordsState extends State<CreateTopicWithWords> {
   Widget build(BuildContext context) {
     return Consumer<TopicNotifier>(
       builder: (_, notifier, __) {
-        return  MaterialApp(
+        return MaterialApp(
           home: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blue,
@@ -75,13 +75,19 @@ class _CreateTopicWithWordsState extends State<CreateTopicWithWords> {
                 IconButton(
                   icon: Icon(Icons.save), // Biểu tượng chia sẻ
                   onPressed: () {
-                    notifier.saveTopicWithWords(_topicNameController.text, _allowMembersToAdd, _termControllers, _definitionControllers);
+                    notifier.saveTopicWithWords(
+                        _topicNameController.text,
+                        _allowMembersToAdd,
+                        _termControllers,
+                        _definitionControllers);
+                    Navigator.of(context).pop();
                   },
                 ),
               ],
             ),
             body: Padding(
-              padding: EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
+              padding:
+                  EdgeInsets.only(top: 16, right: 16, left: 16, bottom: 100),
               child: SingleChildScrollView(
                 child: Center(
                   child: Column(

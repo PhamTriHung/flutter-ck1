@@ -28,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       setState(() {
         a = false;
+        print("A");
       });
       // Chuyển hướng đến màn hình chính
       Navigator.pushAndRemoveUntil(

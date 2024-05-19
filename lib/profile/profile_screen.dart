@@ -119,6 +119,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
+            SizedBox(height: 16.0),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              ElevatedButton(
+                onPressed: () async {
+                  logOut();
+                  await Navigator.pushNamed(context, '/login');
+                },
+                child: Text('Log out'),
+              ),
+            ])
           ],
         ),
       ),

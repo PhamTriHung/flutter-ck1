@@ -6,6 +6,7 @@ import 'package:ck/notifiers/folder_notifier.dart';
 import 'package:ck/register.dart';
 import 'package:ck/forgot.dart';
 import 'package:ck/firebase_options.dart';
+import 'package:ck/firebase/Current_user.dart';
 import 'package:ck/flashcards_page.dart';
 import 'package:ck/folder/app_home_screen.dart';
 import 'package:ck/list_word_page.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
-              initialRoute: '/home',
+              initialRoute: isUserLoggedIn() ? '/home' : '/login',
               routes: {
                 '/login': (context) => const LoginPage(),
                 '/forgot': (context) => const ForgotScreen(),
@@ -57,7 +58,8 @@ class MyApp extends StatelessWidget {
                 '/list_word': (context) => const ListWordPage(),
                 '/add_word': (context) => const AddWordPage(),
                 '/add_topic': (context) => const CreateTopicWithWords(),
-                '/create_folder_with_topic': (context) => const CreateFolderWithTopic(),
+                '/create_folder_with_topic': (context) =>
+                    const CreateFolderWithTopic(),
               },
               title: 'Flutter Demo',
               theme: ThemeData(

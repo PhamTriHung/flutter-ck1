@@ -2,6 +2,10 @@ import 'package:ck/model/Users.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+bool isUserLoggedIn() {
+  return FirebaseAuth.instance.currentUser != null;
+}
+
 Future<Map<String, dynamic>> getUserInfo() async {
   try {
     // Lấy thông tin người dùng hiện tại từ Firebase Authentication
@@ -42,5 +46,46 @@ Future<void> update({required Users user}) async {
         .update(user.toJson());
   } catch (e) {
     print('Error updating user info: $e');
+  }
+}
+
+Future<void> logOut() async {
+  try {
+    // Đăng xuất người dùng
+    await FirebaseAuth.instance.signOut();
+    print('Đăng xuất thành công!');
+  } catch (e) {
+    print('Lỗi khi đăng xuất: $e');
+  }
+}
+
+Future<bool> verifyCurrentPassword(String currentPassword) async {
+  try {
+    // Lấy thông tin người dùng hiện tại
+    User? user = FirebaseAuth.instance.currentUser;
+
+    // Xác thực người dùng với mật khẩu hiện tại
+    AuthCredential credential = EmailAuthProvider.credential(
+        email: user?.email ?? '', password: currentPassword);
+    await user?.reauthenticateWithCredential(credential);
+
+    // Nếu không gặp lỗi, tức là mật khẩu đúng
+    return true;
+  } catch (e) {
+    // Nếu có lỗi, tức là mật khẩu sai
+    return false;
+  }
+}
+
+Future<void> changePassword(String newPassword) async {
+  try {
+    // Lấy thông tin người dùng hiện tại
+    final user = FirebaseAuth.instance.currentUser;
+
+    // Cập nhật mật khẩu mới
+    await user?.updatePassword(newPassword);
+    print('Mật khẩu đã được thay đổi thành công!');
+  } catch (e) {
+    print('Lỗi khi thay đổi mật khẩu: $e');
   }
 }
