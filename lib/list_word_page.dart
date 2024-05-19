@@ -47,27 +47,25 @@ class _ListWordPageState extends State<ListWordPage> {
           padding: EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: Center(
-              child: Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        leading: IconButton(icon: Icon(Icons.speaker), onPressed: () {
-                          speak(notifider.lstWord[index].english, 'en-US');
-                        },),
-                        title: Text(notifider.lstWord[index].english),
-                        subtitle: Text(notifider.lstWord[index].vietnamese),
-                        trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
-                          notifider.deleteWord(notifider.lstWord[index].wordId);
-                          notifider.isInitFinish = false;
-                          notifider.lstWord = [];
-                        },),
-                      ),
-                    );
-                  },
-                  itemCount: notifider.lstWord.length,
-                ),
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: ListTile(
+                      leading: IconButton(icon: Icon(Icons.speaker), onPressed: () {
+                        speak(notifider.lstWord[index].english, 'en-US');
+                      },),
+                      title: Text(notifider.lstWord[index].english),
+                      subtitle: Text(notifider.lstWord[index].vietnamese),
+                      trailing: IconButton(icon: Icon(Icons.delete), onPressed: () {
+                        notifider.deleteWord(notifider.lstWord[index].wordId);
+                        notifider.isInitFinish = false;
+                        notifider.lstWord = [];
+                      },),
+                    ),
+                  );
+                },
+                itemCount: notifider.lstWord.length,
               ),
             ),
           ),
