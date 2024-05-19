@@ -64,6 +64,8 @@ class TypingTestNotifier extends ChangeNotifier {
     learningMode = !learningMode;
     currQuestionIdx = 0;
     word = lstSelectedWord[currQuestionIdx];
+    lstCorrectAnswer = [];
+    lstWrongAnswer = [];
     notifyListeners();
   }
 
@@ -71,6 +73,8 @@ class TypingTestNotifier extends ChangeNotifier {
     currQuestionIdx = 0;
     lstSelectedWord.shuffle();
     word = lstSelectedWord[currQuestionIdx];
+    lstCorrectAnswer = [];
+    lstWrongAnswer = [];
     notifyListeners();
   }
 

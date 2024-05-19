@@ -76,6 +76,8 @@ class QuizNotifier extends ChangeNotifier {
     currQuestionIdx = 0;
     lstSelectedWord.shuffle();
     word = lstSelectedWord[currQuestionIdx];
+    lstWrongAnswer = [];
+    lstCorrectAnswer = [];
     randomAnswer();
     notifyListeners();
   }
