@@ -63,6 +63,7 @@ class _CreateFolderWithTopicState extends State<CreateFolderWithTopic> {
                     onPressed: () {
                       notifier.saveFolderWithTopics(
                           _folderNameController.text, _topicNameControllers);
+                      Navigator.of(context).pop();
                     },
                   ),
                 ],

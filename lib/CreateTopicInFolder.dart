@@ -84,6 +84,7 @@ class _CreateTopicInFolderPageState extends State<CreateTopicInFolderPage> {
                         _allowMembersToAdd,
                         _termControllers,
                         _definitionControllers);
+                    Navigator.of(context).pop();
                   },
                 ),
               ],
