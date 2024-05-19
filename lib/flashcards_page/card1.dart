@@ -19,6 +19,8 @@ class Card1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<FlashcardNotifier>(builder: (_, notifier, __) {
+      print(notifier.word1.firstLanguage);
+      print(notifier.currWordIdx);
       return GestureDetector(
         onDoubleTap: () {
           notifier.runFlipcard();

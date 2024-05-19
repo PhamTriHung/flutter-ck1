@@ -51,6 +51,7 @@ class FolderNotifier extends ChangeNotifier {
           for (var doc in snapshot.docs) {
             var topicQuerySnapshot = await doc.reference.collection('Topics').get();
             folderList.add({
+              'folderId': doc.id,
               'name': doc['name'],
               'topics': topicQuerySnapshot.docs.map((topicDoc) => topicDoc.data()).toList(),
             });
@@ -59,7 +60,7 @@ class FolderNotifier extends ChangeNotifier {
     });
   }
 
-  // void deleteFolder(folderId) {
-  //   _db.collection('Folders').
-  // }
+  void deleteFolder(folderId) {
+    _db.collection('Folders').doc(folderId).delete();
+  }
 }
