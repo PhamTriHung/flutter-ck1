@@ -1,5 +1,6 @@
 import 'package:ck/Login.dart';
 import 'package:ck/register.dart';
+import 'package:ck/forgot.dart';
 import 'package:ck/firebase_options.dart';
 import 'package:ck/flashcards_page.dart';
 import 'package:ck/folder/app_home_screen.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
               initialRoute: '/home',
               routes: {
                 '/login': (context) => const LoginPage(),
+                '/forgot': (context) => const ForgotScreen(),
                 '/register': (context) => const RegisterPage(),
                 '/quiz': (context) => const QuizPage(),
                 '/flashcard': (context) => const FlashcardPages(),
