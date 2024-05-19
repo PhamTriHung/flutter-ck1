@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ck/english_app/profile/edit_screen.dart';
-import 'package:ck/english_app/profile/change_password.dart';
+import 'package:ck/profile/edit_screen.dart';
+import 'package:ck/profile/change_password.dart';
 import 'package:ck/firebase/Current_user.dart';
 
 class ProfileScreen extends StatefulWidget {

@@ -76,10 +76,8 @@ class _TypingPageState extends State<TypingPage> {
                               child: ListTile(
                                 title: Row(
                                   children: [
-                                    Text("Correct answer: " + notifier
+                                    Text(notifier
                                         .lstWrongAnswer[index].correctAnswer),
-                                    Text("Your answer: " + notifier
-                                        .lstWrongAnswer[index].userAnswer)
                                   ],
                                 ),
                               ),

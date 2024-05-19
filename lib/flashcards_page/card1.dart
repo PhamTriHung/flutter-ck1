@@ -60,7 +60,7 @@ class Card1 extends StatelessWidget {
                           ),
                         ),
                       ),
-                      TTSButton(),
+                      TTSButton(language: notifier.learningMode ? 'en-US' : 'vi-VN'),
                     ],
                   ),
                 ),

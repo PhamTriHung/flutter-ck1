@@ -14,10 +14,6 @@ class QuizNotifier extends ChangeNotifier {
     lstSelectedWord.shuffle();
   }
   List<Word> lstSelectedWord = [
-    Word(firstLanguage: "dog", secondLanguage: "cho"),
-    Word(firstLanguage: "cat", secondLanguage: "meo"),
-    Word(firstLanguage: "chicken", secondLanguage: "ga"),
-    Word(firstLanguage: "dug", secondLanguage: "vit"),
   ];
   int currQuestionIdx = 0;
   bool learningMode = false;

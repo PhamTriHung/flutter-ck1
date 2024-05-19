@@ -7,6 +7,8 @@ import 'package:ck/folder/new_class_screen.dart';
 import 'package:ck/folder/topics-tab-screen.dart';
 import 'package:flutter/material.dart';
 
+import '../profile/profile_screen.dart';
+
 class FolderScreen extends StatefulWidget {
   const FolderScreen({super.key, this.animationController});
 
@@ -61,7 +63,7 @@ class _FolderScreenState extends State<FolderScreen>
             tabs: const [
               Tab(text: 'Học phần'),
               Tab(text: 'Thư mục'),
-              Tab(text: 'Lớp học'),
+              Tab(text: 'Thông tin'),
             ]),
       ),
       body: TabBarView(
@@ -69,7 +71,7 @@ class _FolderScreenState extends State<FolderScreen>
         children: const [
           CourseTabScreen(),
           FolderTabScreen(),
-          TopicsTabScreen(),
+          ProfileScreen(),
         ],
       ),
     );
